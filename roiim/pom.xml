@@ -14,9 +14,9 @@
 	<name>roiim</name>
 	<description>integration of paysafe card for checkout </description>
 
-	<properties>
-		<java.version>11</java.version>
-	</properties>
+<!--	<properties>-->
+<!--		<java.version>11</java.version>-->
+<!--	</properties>-->
 
 	<dependencies>
 		<dependency>

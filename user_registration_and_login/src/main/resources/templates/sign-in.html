@@ -1,10 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymleaf.org" lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <title>Spring Boot Authentication</title>
 </head>
 <body>
-$END$
+<form role="form" th:action="@{/sign-in}" th:method="post">
+    <label>Username</label>
+    <input type="text" id="username" name="username">
+    <label>Password</label>
+    <input type="password" id ="password" name="password">
+    <input type="submit">
+</form>
+
 </body>
 </html>

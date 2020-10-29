@@ -21,7 +21,7 @@ public class ConfirmationToken {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String conformationToken;
+    private String confirmationToken;
     private LocalDate createDate;
 
     @OneToOne(targetEntity = User.class, fetch= FetchType.EAGER)
@@ -31,7 +31,7 @@ public class ConfirmationToken {
      ConfirmationToken(User user){
         this.user = user;
         this.createDate = LocalDate.now();
-        this.conformationToken = UUID.randomUUID().toString();
+        this.confirmationToken = UUID.randomUUID().toString();
 
     }
 

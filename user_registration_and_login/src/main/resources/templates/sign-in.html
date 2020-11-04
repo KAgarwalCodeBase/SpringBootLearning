@@ -4,11 +4,12 @@
     <title>Spring Boot Authentication</title>
 </head>
 <body>
-<form role="form" th:action="@{/sign-in}" th:method="post">
-    <label>Username</label>
-    <input type="text" id="username" name="username">
-    <label>Password</label>
-    <input type="password" id ="password" name="password">
+
+<form role="form" th:action="@{/sign-in}"  th:method="post">
+    <label>Email</label>
+    <input type="email" id="email" name="email" >
+    <lable>Password</lable>
+    <input type="password" id="password" name="password" >
     <input type="submit">
 </form>
 

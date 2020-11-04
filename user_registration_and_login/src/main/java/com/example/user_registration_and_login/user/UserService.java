@@ -2,6 +2,7 @@ package com.example.user_registration_and_login.user;
 
 import com.example.user_registration_and_login.entity.User;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -14,10 +15,22 @@ import java.util.Optional;
 @Service
 @AllArgsConstructor
 public class UserService implements UserDetailsService {
-    private final UserRepository userRepository;
+    private UserRepository userRepository;
     private BCryptPasswordEncoder bCryptPasswordEncoder;
     private ConfirmationTokenService confirmationTokenService;
-    private EmailService emailSenderService;;
+    private EmailService emailSenderService;
+    @Autowired
+    public UserService(BCryptPasswordEncoder byCryptPasswordEncoder,
+                       EmailService emailSenderService,
+                       UserRepository userRepository,
+                       ConfirmationTokenService confirmationTokenService)
+    {
+        this.bCryptPasswordEncoder = byCryptPasswordEncoder;
+        this.emailSenderService = emailSenderService;
+        this.userRepository =userRepository;
+        this.confirmationTokenService = confirmationTokenService;
+    }
+
     @Override
     public UserDetails loadUserByUsername (String email) throws UsernameNotFoundException{
         final Optional<User> optionalUser = userRepository.findByEmail(email);
@@ -53,10 +66,12 @@ public class UserService implements UserDetailsService {
         mailMessage.setSubject("Mail Confirmation Link!");
         mailMessage.setFrom("<rs.agarwal@gmail.com>");
         mailMessage.setText("Thank you for registering. Please click on the below link to activate your account. " +
-                "http://localhost:8080/sign-up/confirmation?token="+token );
+                "http://localhost:8080/sign-in/confirm?token="+token );
 
         emailSenderService.sendEmail(mailMessage);
 
+
     }
+
 }
 

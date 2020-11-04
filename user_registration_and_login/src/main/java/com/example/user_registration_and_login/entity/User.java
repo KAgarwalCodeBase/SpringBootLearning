@@ -28,6 +28,8 @@ public class User implements UserDetails {
     private String email;
     private String password;
 
+
+
     @Builder.Default
     private UserRole userRole = UserRole.USER;
 
